@@ -5,7 +5,7 @@ const nforce = require('nforce');
  */
 
 module.exports = nforce.createConnection({
-  client: process.env.SF_CLIENT_ID,
+  clientId: process.env.SF_CLIENT_ID,
   clientSecret: process.env.SF_CLIENT_SECRET,
   redirectUri: 'https://login.salesforce.com/services/oauth2/success',
   apiVersion: 'v43.0',
