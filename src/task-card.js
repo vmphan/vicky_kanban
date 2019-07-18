@@ -1,9 +1,11 @@
 import { PolymerElement, html } from "@polymer/polymer/polymer-element.js";
 
+
 class TaskCard extends PolymerElement {
   static get template() {
     return html`
       <style>
+      @import url("https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css");
         .card {
           background-color: white;
           height: 10vh;
@@ -95,6 +97,8 @@ class TaskCard extends PolymerElement {
         }
       </style>
       <div class="card">
+      <i class="fas fa-times"></i>
+      <div on-click="deleteCard" class="delete">x</div>
         <div class$="name {{color}}">[[user]]</div>
         <h3 class="title">[[title]]</h3>
         <p class="date">[[date]]</p>
@@ -130,6 +134,16 @@ class TaskCard extends PolymerElement {
     }
     const newEvent = new CustomEvent('status change', { detail: detail,  bubbles: true, composed: true });
     this.dispatchEvent(newEvent);
+  }
+
+  deleteCard(event) {
+    const id = this.id;
+    const detail = {
+      id: id,
+    }
+    const newEvent = new CustomEvent('delete card', { detail: detail,  bubbles: true, composed: true });
+    this.dispatchEvent(newEvent);
+    // console.log("this is a console log")
   }
 
   constructor() {
